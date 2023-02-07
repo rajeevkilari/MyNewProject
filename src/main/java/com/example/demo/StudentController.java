@@ -1,39 +1,32 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StudentController {
 	@Autowired
-	private StudentInterface studentInterface;
+	private StudentService studentService;
 
 	@PostMapping("/savedstudents")
-	public StudentEntity saveStudentInfo(@RequestBody StudentEntity entity) {
-		StudentEntity studentEntity = new StudentEntity();
-		studentEntity.setName(entity.getName());
-		studentEntity.setSection(entity.getSection());
-		return studentInterface.save(studentEntity);
+	public StudentEntity saveStudentInfo(@RequestBody StudentEntity entity) {	
+		return studentService.saveStudentInfo(entity);
 	}
 
 	@GetMapping("/savedstudents/{studentId}")
 	public Optional<StudentEntity> getStudentById(@PathVariable Integer studentId) {
-		Optional<StudentEntity> studentEntity = studentInterface.findById(studentId);
-		if (!studentEntity.isPresent()) {
-			return null;
-		} else {
-			return studentEntity;
-		}
+		return studentService.getStudentById(studentId);
+		
 	}
 	@DeleteMapping("/deleteStudents/{studentId}")
 	public String deleteStudentByid(@PathVariable Integer studentId) {
-		if (getStudentById(studentId).isPresent()) {
-			studentInterface.deleteById(studentId);
-			return "Data has Not been Deleted in Database";
-		} else {
-			return "Record has been deleted in Database";
-		}
+		return deleteStudentByid(studentId);
 	}
 }
