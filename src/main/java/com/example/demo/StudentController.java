@@ -29,8 +29,8 @@ public class StudentController {
 	}
 	@DeleteMapping("/deleteStudents/{studentId}")
 	public String deleteStudentByid(@PathVariable Integer studentId) {
-		studentInterface.deleteById(studentId);
 		if (getStudentById(studentId).isPresent()) {
+			studentInterface.deleteById(studentId);
 			return "Data has Not been Deleted in Database";
 		} else {
 			return "Record has been deleted in Database";
