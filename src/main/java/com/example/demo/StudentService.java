@@ -26,7 +26,7 @@ public class StudentService {
 		}
 	}
 
-	public String deleteStudentByid(Integer studentId) {
+	public String delStudentByid(Integer studentId) {
 		if (studentInterface.findById(studentId).isPresent()) {
 			studentInterface.deleteById(studentId);
 			return "Data has been deleted from database";

@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowire;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
