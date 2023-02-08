@@ -15,18 +15,18 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@PostMapping("/savedstudents")
+	@PostMapping("/savedStudents")
 	public StudentEntity saveStudentInfo(@RequestBody StudentEntity entity) {	
 		return studentService.saveStudentInfo(entity);
 	}
 
-	@GetMapping("/savedstudents/{studentId}")
+	@GetMapping("/savedStudents/{studentId}")
 	public Optional<StudentEntity> getStudentById(@PathVariable Integer studentId) {
 		return studentService.getStudentById(studentId);
 		
 	}
-	@DeleteMapping("/deleteStudents/{studentId}")
-	public String deleteStudentByid(@PathVariable Integer studentId) {
-		  return studentService.delStudentByid(studentId);
+	@DeleteMapping("/savedStudents/{studentId}")
+	public String deleteStudentById(@PathVariable Integer studentId) {
+		  return studentService.delStudentById(studentId);
 	}
 }
