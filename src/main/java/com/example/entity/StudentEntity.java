@@ -14,4 +14,5 @@ public class StudentEntity {
 	private int ID;
 	private String name;
 	private String section;
+	private String schoolName;
 }
