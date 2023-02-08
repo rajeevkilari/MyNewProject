@@ -16,7 +16,6 @@ public class StudentRepository {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setName(entity.getName());
         studentEntity.setSection(entity.getSection());
-        studentEntity.setSchoolName("Sacred Hart School");
         return studentInterface.save(studentEntity);
     }
 
