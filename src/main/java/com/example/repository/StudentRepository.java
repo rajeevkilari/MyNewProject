@@ -12,7 +12,7 @@ public class StudentRepository {
     @Autowired
     private StudentInterface studentInterface;
 
-    public StudentEntity saveStudentInfo(StudentEntity entity) {
+    public StudentEntity saveStudentsData(StudentEntity entity) {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setName(entity.getName());
         studentEntity.setSection(entity.getSection());

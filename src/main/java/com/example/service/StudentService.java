@@ -13,7 +13,7 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public StudentEntity saveStudentInfo(StudentEntity entity) {
-        return studentRepository.saveStudentInfo(entity);
+        return studentRepository.saveStudentsData(entity);
     }
 
     public Optional<StudentEntity> getStudentById(Integer studentId) {
