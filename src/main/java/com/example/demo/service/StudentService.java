@@ -1,7 +1,7 @@
-package com.example.service;
+package com.example.demo.service;
 
-import com.example.entity.StudentEntity;
-import com.example.repository.StudentRepository;
+import com.example.demo.entity.StudentEntity;
+import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
     @Autowired
-    private StudentRepository studentRepository;
+    public StudentRepository studentRepository;
 
     public StudentEntity saveStudentInfo(StudentEntity entity) {
         return studentRepository.saveStudentsData(entity);

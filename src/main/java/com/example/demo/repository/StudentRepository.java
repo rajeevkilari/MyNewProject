@@ -1,6 +1,7 @@
-package com.example.repository;
+package com.example.demo.repository;
 
-import com.example.entity.StudentEntity;
+import com.example.demo.entity.StudentEntity;
+import com.example.demo.interfaces.StudentInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,7 @@ import java.util.Optional;
 public class StudentRepository {
 
     @Autowired
-    private StudentInterface studentInterface;
+    public StudentInterface studentInterface;
 
     public StudentEntity saveStudentsData(StudentEntity entity) {
         StudentEntity studentEntity = new StudentEntity();

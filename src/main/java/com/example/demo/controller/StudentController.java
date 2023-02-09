@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.example.demo.controller;
 
-import com.example.entity.StudentEntity;
-import com.example.service.StudentService;
+import com.example.demo.entity.StudentEntity;
+import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
 @RestController
 public class StudentController {
 	@Autowired
-	private StudentService studentService;
+	public StudentService studentService;
 
 	@PostMapping("/savedStudents")
 	public StudentEntity saveStudentInfo(@RequestBody StudentEntity entity) {
