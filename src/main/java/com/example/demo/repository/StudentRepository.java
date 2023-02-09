@@ -2,6 +2,8 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.StudentEntity;
 import com.example.demo.interfaces.StudentInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,8 @@ import java.util.Optional;
 
 @Repository
 public class StudentRepository {
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(StudentRepository.class);
 
     @Autowired
     public StudentInterface studentInterface;
@@ -23,7 +27,8 @@ public class StudentRepository {
     public Optional<StudentEntity> getStudentById(Integer studentId) {
         Optional<StudentEntity> studentEntity = studentInterface.findById(studentId);
         if (!studentEntity.isPresent()) {
-            return null;
+            LOGGER.error("No Student Exist with this ID:{}",studentId);
+            return Optional.empty();
         } else {
             return studentEntity;
         }
