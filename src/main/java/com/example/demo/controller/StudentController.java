@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.StudentEntity;
 import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class StudentController {
 	public StudentService studentService;
 
 	@PostMapping("/savedStudents")
-	public Response saveStudentInfo(@RequestBody StudentEntity entity) {
+	public Response saveStudentInfo(@Valid @RequestBody StudentEntity entity) {
 		return studentService.saveStudentInfo(entity);
 	}
 
@@ -25,5 +26,9 @@ public class StudentController {
 	@DeleteMapping("/deleteById/{studentId}")
 	public Response deleteStudentById(@PathVariable Integer studentId) {
 		  return studentService.delStudentById(studentId);
+	}
+	@PatchMapping("/savePartialData")
+	public Response savePartialStudentData(@Valid @RequestBody StudentEntity entity) {
+		return studentService.savePartialData(entity);
 	}
 }

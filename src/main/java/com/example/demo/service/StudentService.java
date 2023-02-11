@@ -23,4 +23,7 @@ public class StudentService {
     public Response delStudentById(Integer studentId) {
         return studentRepository.delStudentById(studentId);
     }
+    public Response savePartialData(StudentEntity entity) {
+        return studentRepository.savePartialData(entity);
+    }
 }
