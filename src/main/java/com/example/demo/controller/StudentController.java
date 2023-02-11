@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.Response;
 import com.example.demo.entity.StudentEntity;
+import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

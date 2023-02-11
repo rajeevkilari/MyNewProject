@@ -1,8 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.Response;
 import com.example.demo.entity.StudentEntity;
 import com.example.demo.interfaces.StudentInterface;
+import com.example.demo.response.Response;
+import com.example.demo.util.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,12 @@ public class StudentRepository {
                 response.setMessage("The Data has been Saved with the Id" + " " + student.getID());
                 response.setStatusCode("200");
                 response.setStudentEntity(student);
+                response.setDateTime(Utility.getDate());
             } else {
                 response.setMessage("The Data has Not Been Saved or already Exists");
                 response.setStatusCode("500");
                 response.setStudentEntity(null);
+                response.setDateTime(Utility.getDate());
             }
         }
         return response;
@@ -46,10 +49,12 @@ public class StudentRepository {
             response.setMessage("The Data with this ID"+" "+studentId +" "+"doesn't exist in Database");
             response.setStatusCode("400");
             response.setStudentEntity(null);
+            response.setDateTime(Utility.getDate());
         } else {
             response.setMessage("The Data is Present with this ID"+" "+studentId);
             response.setStatusCode("200");
             response.setStudentEntity(studentEntity.get());
+            response.setDateTime(Utility.getDate());
         }
         return response;
     }
@@ -62,10 +67,12 @@ public class StudentRepository {
             response.setMessage("The Data with this ID"+" "+studentId +" "+"has been deleted");
             response.setStatusCode("200");
             response.setStudentEntity(studentEntity.get());
+            response.setDateTime(Utility.getDate());
         } else {
             response.setMessage("The Data with this ID"+" "+studentId +" "+"Is already deleted or not available");
             response.setStatusCode("400");
             response.setStudentEntity(studentEntity.get());
+            response.setDateTime(Utility.getDate());
         }
         return response;
     }
