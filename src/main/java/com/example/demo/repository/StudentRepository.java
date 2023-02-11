@@ -6,6 +6,7 @@ import com.example.demo.response.Response;
 import com.example.demo.util.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,6 +47,8 @@ public class StudentRepository {
         Response response = new Response();
         Optional<StudentEntity> studentEntity = studentInterface.findById(studentId);
         if (!studentEntity.isPresent()) {
+            LOGGER.error("The Data with this ID doesn't exist {}",studentId);
+            LOGGER.debug(String.valueOf(studentId));
             response.setMessage("The Data with this ID"+" "+studentId +" "+"doesn't exist in Database");
             response.setStatusCode("400");
             response.setStudentEntity(null);
