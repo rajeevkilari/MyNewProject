@@ -1,10 +1,11 @@
 package com.example.demo.response;
 
 import com.example.demo.entity.StudentEntity;
+import org.springframework.http.HttpStatus;
 
 public class Response {
     private String message;
-    private String statusCode;
+    private HttpStatus statusCode;
     private StudentEntity studentEntity;
     private String dateTime;
 
@@ -24,11 +25,11 @@ public class Response {
         this.message = message;
     }
 
-    public String getStatusCode() {
+    public HttpStatus getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public void setStatusCode(HttpStatus statusCode) {
         this.statusCode = statusCode;
     }
 
