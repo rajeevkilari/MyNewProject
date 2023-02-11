@@ -17,7 +17,6 @@ public class StudentController {
 
 	@PostMapping("/savedStudents")
 	public Response saveStudentInfo(@RequestBody StudentEntity entity) {
-		LOGGER.info("Entered into SavedStudent Mapping:{}",entity.getID());
 		return studentService.saveStudentInfo(entity);
 	}
 
