@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class StudentRepository {
@@ -139,8 +138,20 @@ public class StudentRepository {
         return response;
     }
 
-    public List<StudentEntity> findByName(String name) {
-       return studentInterface.findByName(name);
+    public Response findByName(String name) {
+        Response response = new Response();
+        List<StudentEntity> studentEntityList = studentInterface.findByName(name);
+        if (studentEntityList.isEmpty()) {
+            LOGGER.error("The Data with this Name doesn't exist {}", name);
+            response.setMessage("The Data with this Name" + " " + name + " " + "doesn't exist in Database");
+            response.setStatusCode(HttpStatus.NOT_FOUND);
+        } else {
+            response.setMessage("The Data is Present with this Name" + " " + name);
+            response.setStatusCode(HttpStatus.FOUND);
+            response.setStudentEntityList(studentEntityList);
+        }
+        response.setDateTime(Utility.getDate());
+        return response;
     }
     public List<StudentEntity> findBySection(String section){
     	return studentInterface.findBySection(section);
