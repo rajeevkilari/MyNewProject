@@ -3,10 +3,13 @@ package com.example.demo.response;
 import com.example.demo.entity.StudentEntity;
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+
 public class Response {
     private String message;
     private HttpStatus statusCode;
     private StudentEntity studentEntity;
+    private List<StudentEntity> studentEntityList;
     private String dateTime;
 
     public String getDateTime() {
@@ -39,5 +42,13 @@ public class Response {
 
     public void setStudentEntity(StudentEntity studentEntity) {
         this.studentEntity = studentEntity;
+    }
+
+    public List<StudentEntity> getStudentEntityList() {
+        return studentEntityList;
+    }
+
+    public void setStudentEntityList(List<StudentEntity> studentEntityList) {
+        this.studentEntityList = studentEntityList;
     }
 }

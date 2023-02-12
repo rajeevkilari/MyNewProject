@@ -5,8 +5,6 @@ import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class StudentController {
 
@@ -36,7 +34,7 @@ public class StudentController {
 		return studentService.updateData(entity);
 	}
 	@GetMapping("/findByName/{name}")
-	public List<StudentEntity> getStudentById(@PathVariable String name) {
+	public Response getStudentById(@PathVariable String name) {
 		return studentService.findByName(name);
 	}
 }

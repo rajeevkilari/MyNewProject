@@ -6,8 +6,6 @@ import com.example.demo.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class StudentService {
 
@@ -34,7 +32,7 @@ public class StudentService {
         return studentRepository.updateData(entity);
     }
 
-    public List<StudentEntity> findByName(String name) {
+    public Response findByName(String name) {
     return studentRepository.findByName(name);
     }
 }
