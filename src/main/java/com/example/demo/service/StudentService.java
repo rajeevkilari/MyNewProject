@@ -37,4 +37,14 @@ public class StudentService {
     public List<StudentEntity> findByName(String name) {
     return studentRepository.findByName(name);
     }
+    public List<StudentEntity> findBySection(String section) {
+        return studentRepository.findBySection(section);
+        }
+    public Response findBySchoolname(String schoolName) {
+        return studentRepository.findBySchoolName(schoolName);
+    }
+    public Response patchData(StudentEntity entity) {
+    	return studentRepository.patchData(entity);
+    }
+    
 }

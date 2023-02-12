@@ -39,4 +39,16 @@ public class StudentController {
 	public List<StudentEntity> getStudentById(@PathVariable String name) {
 		return studentService.findByName(name);
 	}
+	@GetMapping("/findBySection/{section}")
+	public List<StudentEntity> getStudentBySection(@PathVariable String section) {
+		return studentService.findBySection(section);
+	}
+	@GetMapping("/findBySchoolName/{schoolName}")
+	public Response getStudentBySchoolName(@PathVariable String schoolName) {
+		return studentService.findBySchoolname(schoolName);
+	}
+	@PatchMapping("/patchData/{studentId}")
+	public Response patchData(@RequestBody StudentEntity entity) {
+	return studentService.patchData(entity);
+	}
 }

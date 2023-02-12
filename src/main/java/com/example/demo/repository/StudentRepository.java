@@ -21,6 +21,7 @@ public class StudentRepository {
     @Autowired
     public StudentInterface studentInterface;
 
+
     public Response saveStudentsData(StudentEntity entity) {
         Response response = new Response();
         if (entity != null) {
@@ -141,4 +142,27 @@ public class StudentRepository {
     public List<StudentEntity> findByName(String name) {
        return studentInterface.findByName(name);
     }
+    public List<StudentEntity> findBySection(String section){
+    	return studentInterface.findBySection(section);
+    }
+    public Response findBySchoolName(String schoolName) {
+    	Response response = new Response();
+    	Optional<StudentEntity> studentEntity=studentInterface.findBySchoolName(schoolName);
+    	response.setMessage("found data by student's schoolname");
+        response.setStudentEntity(studentEntity.get());    	
+        return response; 
+    }
+    public Response patchData(StudentEntity entity) {
+    	Response response = new Response();    	
+    	Optional<StudentEntity> studentEntity =studentInterface.findById(entity.getID());
+         studentEntity.get().setName(entity.getName()); 
+         studentEntity.get().setSchoolName(entity.getSchoolName());
+         StudentEntity student=studentInterface.save(studentEntity.get());
+         response.setMessage("partial data is updated");
+         response.setStudentEntity(student);
+    	return response;
+    }
+    
+    
+    
 }
