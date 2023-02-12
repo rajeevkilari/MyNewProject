@@ -11,5 +11,6 @@ public interface StudentInterface extends JpaRepository<StudentEntity, Integer> 
 
     // Write Code for FindBySection.
     //Write Code for FindBySchoolName.
+    //Try changing the methodName
     public List<StudentEntity> findByName(String name);
 }
