@@ -6,6 +6,8 @@ import com.example.demo.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
@@ -23,7 +25,16 @@ public class StudentService {
     public Response delStudentById(Integer studentId) {
         return studentRepository.delStudentById(studentId);
     }
+
     public Response savePartialData(StudentEntity entity) {
         return studentRepository.savePartialData(entity);
+    }
+
+    public Response updateData(StudentEntity entity) {
+        return studentRepository.updateData(entity);
+    }
+
+    public List<StudentEntity> findByName(String name) {
+    return studentRepository.findByName(name);
     }
 }
