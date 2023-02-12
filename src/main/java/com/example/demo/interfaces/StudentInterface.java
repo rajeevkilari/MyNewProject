@@ -10,10 +10,7 @@ import java.util.Optional;
 @Repository
 public interface StudentInterface extends JpaRepository<StudentEntity, Integer> {
 
-    // Write Code for FindBySection.
-    //Write Code for FindBySchoolName.
-    //Try changing the methodName
-    public List<StudentEntity> findByName(String name);
-    public List<StudentEntity> findBySection(String section);
-    public  Optional<StudentEntity> findBySchoolName(String schoolName);
+    List<StudentEntity> findByName(String name);
+    List<StudentEntity> findBySection(String section);
+    List<StudentEntity> findBySchoolName(String schoolName);
 }

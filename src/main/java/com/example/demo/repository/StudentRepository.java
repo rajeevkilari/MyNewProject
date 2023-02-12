@@ -24,11 +24,7 @@ public class StudentRepository {
     public Response saveStudentsData(StudentEntity entity) {
         Response response = new Response();
         if (entity != null) {
-            StudentEntity studentEntity = new StudentEntity();
-            studentEntity.setName(entity.getName());
-            studentEntity.setSection(entity.getSection());
-            studentEntity.setSchoolName(entity.getSchoolName());
-            StudentEntity student = studentInterface.save(studentEntity);
+            StudentEntity student = studentInterface.save(entity);
             if (student.getName() != null && student.getName().equals(entity.getName())) {
                 response.setMessage("The Data has been Saved with the Id" + " " + student.getID());
                 response.setStatusCode(HttpStatus.CREATED);
@@ -107,19 +103,19 @@ public class StudentRepository {
         if (entity != null && entity.getID() != 0) {
             Optional<StudentEntity> studentEntity = studentInterface.findById(entity.getID());
             if (studentEntity.isPresent()) {
-                if(entity.getName()!=null){
+                if (entity.getName() != null) {
                     studentEntity.get().setName(entity.getName());
-                }else{
+                } else {
                     studentEntity.get().setName(studentEntity.get().getName());
                 }
-                if(entity.getSection()!=null){
+                if (entity.getSection() != null) {
                     studentEntity.get().setSection(entity.getSection());
-                }else{
+                } else {
                     studentEntity.get().setSection(studentEntity.get().getSection());
                 }
-                if(entity.getSchoolName()!=null){
+                if (entity.getSchoolName() != null) {
                     studentEntity.get().setSchoolName(entity.getSchoolName());
-                }else{
+                } else {
                     studentEntity.get().setName(studentEntity.get().getSchoolName());
                 }
                 StudentEntity student = studentInterface.save(studentEntity.get());
@@ -153,27 +149,57 @@ public class StudentRepository {
         response.setDateTime(Utility.getDate());
         return response;
     }
-    public List<StudentEntity> findBySection(String section){
-    	return studentInterface.findBySection(section);
+
+    public Response findBySection(String section) {
+        Response response = new Response();
+        List<StudentEntity> studentEntityList = studentInterface.findBySection(section);
+        if (studentEntityList.isEmpty()) {
+            LOGGER.error("The Data with this Section doesn't exist {}", section);
+            response.setMessage("The Data with this Section" + " " + section + " " + "doesn't exist in Database");
+            response.setStatusCode(HttpStatus.NOT_FOUND);
+        } else {
+            response.setMessage("The Data is Present with this Section" + " " + section);
+            response.setStatusCode(HttpStatus.FOUND);
+            response.setStudentEntityList(studentEntityList);
+        }
+        response.setDateTime(Utility.getDate());
+        return response;
     }
+
     public Response findBySchoolName(String schoolName) {
-    	Response response = new Response();
-    	Optional<StudentEntity> studentEntity=studentInterface.findBySchoolName(schoolName);
-    	response.setMessage("found data by student's schoolname");
-        response.setStudentEntity(studentEntity.get());    	
-        return response; 
+        Response response = new Response();
+        List<StudentEntity> studentEntityList = studentInterface.findBySchoolName(schoolName);
+        if (studentEntityList.isEmpty()) {
+            LOGGER.error("The Data with this School Name doesn't exist {}", schoolName);
+            response.setMessage("The Data with this School Name" + " " + schoolName + " " + "doesn't exist in Database");
+            response.setStatusCode(HttpStatus.NOT_FOUND);
+        } else {
+            response.setMessage("The Data is Present with this Name" + " " + schoolName);
+            response.setStatusCode(HttpStatus.FOUND);
+            response.setStudentEntityList(studentEntityList);
+        }
+        response.setDateTime(Utility.getDate());
+        return response;
     }
+
     public Response patchData(StudentEntity entity) {
-    	Response response = new Response();    	
-    	Optional<StudentEntity> studentEntity =studentInterface.findById(entity.getID());
-         studentEntity.get().setName(entity.getName()); 
-         studentEntity.get().setSchoolName(entity.getSchoolName());
-         StudentEntity student=studentInterface.save(studentEntity.get());
-         response.setMessage("partial data is updated");
-         response.setStudentEntity(student);
-    	return response;
+        Response response = new Response();
+        Optional<StudentEntity> studentEntity = studentInterface.findById(entity.getID());
+        if (studentEntity.isPresent()) {
+            studentEntity.get().setSchoolName(entity.getSchoolName());
+            StudentEntity student = studentInterface.save(studentEntity.get());
+            if (student.getID() != 0) {
+                response.setMessage("Partial Data Saved" + " " + student.getID());
+                response.setStatusCode(HttpStatus.ACCEPTED);
+                response.setStudentEntity(student);
+            } else {
+                response.setMessage("The Data has Not Been Saved or already Exists");
+                response.setStatusCode(HttpStatus.ALREADY_REPORTED);
+                response.setStudentEntity(null);
+            }
+            response.setDateTime(Utility.getDate());
+        }
+        return response;
     }
-    
-    
-    
+
 }

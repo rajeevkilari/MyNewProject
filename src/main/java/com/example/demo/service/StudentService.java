@@ -4,8 +4,6 @@ import com.example.demo.entity.StudentEntity;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.response.Response;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,16 +34,20 @@ public class StudentService {
     }
 
     public Response findByName(String name) {
-    return studentRepository.findByName(name);
+        return studentRepository.findByName(name);
     }
-    public List<StudentEntity> findBySection(String section) {
+
+    public Response findBySection(String section) {
+
         return studentRepository.findBySection(section);
-        }
-    public Response findBySchoolname(String schoolName) {
+    }
+
+    public Response findBySchoolName(String schoolName) {
         return studentRepository.findBySchoolName(schoolName);
     }
+
     public Response patchData(StudentEntity entity) {
-    	return studentRepository.patchData(entity);
+        return studentRepository.patchData(entity);
     }
-    
+
 }

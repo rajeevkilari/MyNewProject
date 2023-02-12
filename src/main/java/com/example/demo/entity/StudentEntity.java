@@ -9,10 +9,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "StudentInfo")
 public class StudentEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int ID;
-	private String name;
-	private String section;
-	private String schoolName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int ID;
+    private String name;
+    private String section;
+    private String schoolName;
 }
